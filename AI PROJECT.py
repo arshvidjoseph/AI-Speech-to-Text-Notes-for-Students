@@ -20,7 +20,7 @@ def speech_to_text(audio_file):
             return f"Error converting MP3 to WAV: {str(e)}"
     try:
         with sr.AudioFile(audio_file) as source:
-            print("🔊 Processing audio...")
+            print("Processing audio...")
             audio = recognizer.record(source)
         return recognizer.recognize_google(audio)
     except sr.UnknownValueError:
@@ -59,19 +59,19 @@ def save_as_pdf(title, date, day, summary, filepath):
         pdf.multi_cell(0, 10, line)
     pdf.output(filepath)
 
-audio_path = input("📥 Paste the full path to the lecture audio file (mp3): ").strip().strip('"')
+audio_path = input("Paste the full path to the lecture audio file (mp3): ").strip().strip('"')
 if not os.path.isfile(audio_path):
-    print("❌ Error: The specified audio file does not exist.")
+    print(" Error: The specified audio file does not exist.")
     exit()
 
-lecture_title = input("📝 Enter the lecture title: ").strip()
+lecture_title = input(" Enter the lecture title: ").strip()
 
-save_dir = input("📁 Enter the folder path to save notes: ").strip().strip('"')
+save_dir = input(" Enter the folder path to save notes: ").strip().strip('"')
 if not os.path.isdir(save_dir):
-    print("❌ Error: The specified folder does not exist.")
+    print(" Error: The specified folder does not exist.")
     exit()
 
-file_name = input("💾 Enter the filename (without extension): ").strip()
+file_name = input(" Enter the filename (without extension): ").strip()
 if not file_name:
     file_name = "Lecture_Notes"
 
@@ -86,5 +86,5 @@ word_path = os.path.join(save_dir, file_name + ".docx")
 
 save_as_word(lecture_title, date_today, day_today, lecture_text, word_path)
 
-print("\n✅ Notes saved successfully!")
-print(f"📄 Word file saved at: {word_path}")
+print("Notes saved successfully!")
+print(f"Word file saved at: {word_path}")
